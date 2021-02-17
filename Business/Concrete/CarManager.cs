@@ -40,7 +40,7 @@ namespace Business.Concrete
         public IResult Add(Car car )
         {
             _carDal.Add(car);
-            if (car.DailyPrice<0 && car.Description.Length<2)
+            if (car.DailyPrice<0 && car.CarDescription.Length<2)
             {
                 return new ErrorResult(Messages.CarNamedValid);   
             }

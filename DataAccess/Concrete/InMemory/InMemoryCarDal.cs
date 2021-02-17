@@ -16,14 +16,14 @@ namespace DataAccess.Concrete.InMemory
         {
             _cars = new List<Car>
             {
-                new Car{CarId=1,BrandId=1,ColorId=1,ModelYear=2011,DailyPrice=150,Description="Audi A4"},
-                new Car{CarId=2,BrandId=1,ColorId=2,ModelYear=2012,DailyPrice=250,Description="Audi A3"},
-                new Car{CarId=3,BrandId=2,ColorId=1,ModelYear=2013,DailyPrice=350,Description="Bmw 320i"},
-                new Car{CarId=4,BrandId=2,ColorId=3,ModelYear=2014,DailyPrice=250,Description="Bmw 520d"},
-                new Car{CarId=5,BrandId=3,ColorId=1,ModelYear=2015,DailyPrice=450,Description="WV Passat"},
-                new Car{CarId=6,BrandId=3,ColorId=4,ModelYear=2013,DailyPrice=250,Description="WV CC"},
-                new Car{CarId=7,BrandId=4,ColorId=1,ModelYear=2015,DailyPrice=250,Description="Nissan Juke"},
-                new Car{CarId=8,BrandId=4,ColorId=2,ModelYear=2010,DailyPrice=150,Description="Nissan Qaskhai"}
+                new Car{Id=1,BrandId=1,ColorId=1,ModelYear=2011,DailyPrice=150,CarDescription="Audi A4"},
+                new Car{Id=2,BrandId=1,ColorId=2,ModelYear=2012,DailyPrice=250,CarDescription="Audi A3"},
+                new Car{Id=3,BrandId=2,ColorId=1,ModelYear=2013,DailyPrice=350,CarDescription="Bmw 320i"},
+                new Car{Id=4,BrandId=2,ColorId=3,ModelYear=2014,DailyPrice=250,CarDescription="Bmw 520d"},
+                new Car{Id=5,BrandId=3,ColorId=1,ModelYear=2015,DailyPrice=450,CarDescription="WV Passat"},
+                new Car{Id=6,BrandId=3,ColorId=4,ModelYear=2013,DailyPrice=250,CarDescription="WV CC"},
+                new Car{Id=7,BrandId=4,ColorId=1,ModelYear=2015,DailyPrice=250,CarDescription="Nissan Juke"},
+                new Car{Id=8,BrandId=4,ColorId=2,ModelYear=2010,DailyPrice=150,CarDescription="Nissan Qaskhai"}
             };
 
         }
@@ -34,7 +34,7 @@ namespace DataAccess.Concrete.InMemory
 
         public void Delete(Car car)
         {
-            Car carToDelete = _cars.SingleOrDefault(c => c.CarId == car.CarId);
+            Car carToDelete = _cars.SingleOrDefault(c => c.Id == car.Id);
             _cars.Remove(carToDelete);
         }
 
@@ -70,12 +70,12 @@ namespace DataAccess.Concrete.InMemory
 
         public void Update(Car car)
         {
-            Car carToUpdate = _cars.SingleOrDefault(c => c.CarId == car.CarId);
+            Car carToUpdate = _cars.SingleOrDefault(c => c.Id == car.Id);
             carToUpdate.BrandId = car.BrandId;
             carToUpdate.ColorId = car.ColorId;
             carToUpdate.ModelYear = car.ModelYear;
             carToUpdate.DailyPrice = car.DailyPrice;
-            carToUpdate.Description = car.Description;
+            carToUpdate.CarDescription = car.CarDescription;
             
         }
     }

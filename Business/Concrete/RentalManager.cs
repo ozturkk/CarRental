@@ -47,13 +47,14 @@ namespace Business.Concrete
 
         public IDataResult<bool> IsDelivery(int carId)
         {
-            Rental isDeliveryCar = _rentalDal.Get(p => p.Id == carId && p.ReturnDate == null);
+            Rental isDeliveryCar = _rentalDal.Get(p => p.CarId == carId && p.ReturnDate == null);
             if (isDeliveryCar != null)
             {
                 return new ErrorDataResult<bool>(false, Messages.CarNotAvailable);
             }
             else
                 return new SuccessDataResult<bool>(true, Messages.CarAvailable);
+            
         }
     }
 }

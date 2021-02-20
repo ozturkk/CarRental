@@ -18,3 +18,4 @@ C:\Users\Hüseyin Öztürk\source\repos\ReCapProject\ConsoleUI\obj\Debug\netcore
 C:\Users\Hüseyin Öztürk\source\repos\ReCapProject\ConsoleUI\obj\Debug\netcoreapp2.1\ConsoleUI.pdb
 C:\Users\Hüseyin Öztürk\source\repos\ReCapProject\ConsoleUI\bin\Debug\netcoreapp2.1\Core.dll
 C:\Users\Hüseyin Öztürk\source\repos\ReCapProject\ConsoleUI\bin\Debug\netcoreapp2.1\Core.pdb
+C:\Users\Hüseyin Öztürk\source\repos\ReCapProject\ConsoleUI\obj\Debug\netcoreapp2.1\ConsoleUI.genruntimeconfig.cache

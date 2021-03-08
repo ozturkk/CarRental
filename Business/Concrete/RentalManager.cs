@@ -1,5 +1,9 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -17,34 +21,41 @@ namespace Business.Concrete
         {
             _rentalDal = rentalDal;
         }
+        [CacheRemoveAspect("IRentalService.Get")]
+        [SecuredOperation("rental.add,admin")]
+        [ValidationAspect(typeof(RentalValidator))]
         public IResult Add(Rental rental)
         {
             _rentalDal.Add(rental);
             return new SuccessResult(Messages.RentalAdded);
         }
-
+        [CacheRemoveAspect("IRentalService.Get")]
+        [SecuredOperation("rental.add,admin")]
+     
         public IResult Delete(Rental rental)
         {
             _rentalDal.Delete(rental);
             return new SuccessResult(Messages.RentalDeleted);
         }
-
+        [CacheAspect]
         public IDataResult<List<Rental>> GetAll()
         {
             return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(), Messages.RentalListed);
         }
-
+        [CacheRemoveAspect("IRentalService.Get")]
+        [SecuredOperation("rental.add,admin")]
+        [ValidationAspect(typeof(RentalValidator))]
         public IResult Update(Rental rental)
         {
             _rentalDal.Update(rental);
             return new SuccessResult(Messages.RentalUpdated);
         }
-
+        [CacheAspect]
         public IDataResult<List<RentalDetailDto>> GetAllRentalDetails()
         {
            return new SuccessDataResult<List<RentalDetailDto>>(  _rentalDal.GetRentalDetails());
         }
-
+        [CacheAspect]
         public IDataResult<bool> IsDelivery(int carId)
         {
             Rental isDeliveryCar = _rentalDal.Get(p => p.CarId == carId && p.ReturnDate == null);

@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -12,31 +13,36 @@ namespace Business.Concrete
     public class UserManager : IUserService
     {
         IUserDal _userDal;
-        public UserManager(IUserDal userDal)
+
+        public UserManager(IUserDal userDAL)
         {
-            _userDal = userDal;
+            _userDal = userDAL;
         }
-        public IResult Add(User user)
+
+        public List<OperationClaim> GetClaims(User user)
+        {
+            return _userDal.GetClaims(user);
+        }
+
+        public void Add(User user)
         {
             _userDal.Add(user);
-            return new SuccessResult(Messages.UserAdded);
+
         }
 
-        public IResult Delete(User user)
+        public User GetByMail(string email)
         {
-            _userDal.Delete(user);
-            return new SuccessResult(Messages.UserDeleted);
+            return _userDal.Get(u => u.Email == email);
         }
 
-        public IDataResult<List<User>> GetAll()
+        public void Delete(User user)
         {
-            return new SuccessDataResult<List<User>>(_userDal.GetAll(), Messages.UserListed);
+            throw new NotImplementedException();
         }
 
-        public IResult Update(User user)
+        public void Update(User user)
         {
-            _userDal.Update(user);
-            return new SuccessResult(Messages.UserUpdated);
+            throw new NotImplementedException();
         }
     }
 }
